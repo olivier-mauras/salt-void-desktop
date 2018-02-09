@@ -13,6 +13,7 @@ libvirt.lvm.storage.create.{{ storage }}:
     - name: {{ config['mnt'] }}
     - device: /dev/mapper/vgpool-{{ storage }}
     - fstype: ext4
+    - mkmnt: True
     - opts: rw,relatime,data=ordered,discard
     - dump: 0
     - pass_num: 0
