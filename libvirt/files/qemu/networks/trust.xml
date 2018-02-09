@@ -1,0 +1,7 @@
+<network>
+  <name>trust</name>
+  <bridge name='br_trust' stp='on' delay='0'/>
+  <mac address='52:54:00:2b:00:00'/>
+  <domain name='trust'/>
+</network>
+

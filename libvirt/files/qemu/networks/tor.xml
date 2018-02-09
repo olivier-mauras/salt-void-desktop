@@ -1,0 +1,7 @@
+<network>
+  <name>tor</name>
+  <bridge name='br_tor' stp='on' delay='0'/>
+  <mac address='52:54:00:2b:00:02'/>
+  <domain name='tor'/>
+</network>
+

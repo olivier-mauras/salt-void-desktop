@@ -1,0 +1,7 @@
+<network>
+  <name>untrust</name>
+  <bridge name='br_untrust' stp='on' delay='0'/>
+  <mac address='52:54:00:2b:00:01'/>
+  <domain name='untrust'/>
+</network>
+

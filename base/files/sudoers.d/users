@@ -1,0 +1,2 @@
+# sudo access for user coredumb
+coredumb ALL=(ALL) NOPASSWD: ALL
