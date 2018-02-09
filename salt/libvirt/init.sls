@@ -52,6 +52,9 @@ libvirt.config.networks.{{ network }}.autostart:
 {% endfor %}
 
 # Storage
+include:
+  - .lvm
+
 libvirt.config.storage.default:
   file.absent:
     - name: /etc/libvirt/storage/default.xml
