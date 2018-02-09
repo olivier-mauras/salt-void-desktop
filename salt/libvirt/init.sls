@@ -71,6 +71,7 @@ libvirt.config.storage.{{ storage }}:
     - user: root
     - group: root
     - mode: 600
+    - makedirs: True
     - template: jinja
     - context:
         name: {{ storage }}
@@ -80,6 +81,7 @@ libvirt.config.storage.{{ storage }}.autostart:
   file.symlink:
     - name: /etc/libvirt/storage/autostart/{{ storage }}.xml
     - target: /etc/libvirt/storage/{{ storage }}.xml
+    - makedirs: True
     - listen_in:
       - service: libvirt.service.restart
 {% endfor %}
