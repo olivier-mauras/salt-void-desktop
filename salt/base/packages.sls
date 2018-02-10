@@ -5,5 +5,4 @@ base.packages:
       - cronie
       - rsyslog
       - logrotate
-      - vim
       - sudo
