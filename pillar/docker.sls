@@ -23,7 +23,7 @@ docker:
       size: 10G
       mnt: /var/lib/docker
     docker_images:
-      siize: 2G
+      size: 2G
       mnt: /srv/docker
   images:
     alpinelinux:
