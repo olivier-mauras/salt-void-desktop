@@ -2,32 +2,45 @@
 wm.pkg:
   pkg.installed:
     - pkgs:
+      - ConsoleKit2
+      - alsa-utils
+      - dejavu-fonts-ttf
+      - dmenu
+      - font-cursor-misc
+      - font-misc-misc
+      - htop
       - i3
       - i3lock
       - i3status
       - perl-AnyEvent-I3
+      - pulseaudio 
+      - rxvt-unicode
+      - rxvt-unicode-terminfo
+      - sxhkd
+      - vim
+      - xauth
+      - xclip
+      - xf86-input-evdev
+      - xf86-input-synaptics
+      - xf86-video-dummy
+      - xf86-video-intel
       - xinit
       - xorg-minimal
       - xorg-server-xephyr
-      - xf86-video-intel
-      - xf86-input-synaptics
-      - xf86-input-evdev
+      - xpra
       - xrandr
       - xterm
-      - rxvt-unicode
-      - rxvt-unicode-terminfo
-      - alsa-utils 
-      - pulseaudio 
-      - ConsoleKit2
-      - sxhkd
-      - font-misc-misc
-      - font-cursor-misc
-      - dejavu-fonts-ttf
-      - dmenu
-      - htop
-      - vim
       - zsh
       - zsh-completions
+
+# Install x11docker
+wm.x11docker:
+  file.managed:
+    - name: /usr/bin/x11docker
+    - source: salt://wm/files/usr/bin/x11docker
+    - user: root
+    - group: root
+    - mode: 755
 
 # Pulseaudio required services
 # Dbus is already enabled by libvirt but that's for reusability sake. 
