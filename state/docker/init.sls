@@ -1,6 +1,7 @@
 # Prepare docker volume
 include:
   - .lvm
+  - .images
 
 # Install packages
 docker.pkg:

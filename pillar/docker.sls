@@ -22,3 +22,11 @@ docker:
     docker:
       size: 10G
       mnt: /var/lib/docker
+    docker_images:
+      siize: 2G
+      mnt: /srv/docker
+  images:
+    alpinelinux:
+      url: https://git.mauras.ch/docker/alpinelinux
+    voidlinux:
+      url: https://git.mauras.ch/docker/voidlinux
