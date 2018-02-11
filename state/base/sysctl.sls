@@ -2,6 +2,6 @@
 base.sysctl.{{ sysopt }}:
   sysctl.present:
     - name: {{ sysopt }}
-    - value: {{ pillar['sysctl'][sysopt] }}
+    - value: {{ pillar['base']['sysctl'][sysopt] }}
     - config: /etc/sysctl.conf
 {% endfor %}
