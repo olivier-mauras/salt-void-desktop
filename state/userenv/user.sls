@@ -19,3 +19,5 @@ userenv.user.create:
     - hash_password: True
     - enforce_password: True
 {% endif %}
+    - require:
+      - group: userenv.group.create
