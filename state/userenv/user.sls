@@ -1,9 +1,14 @@
+userenv.group.create:
+  group.present:
+    - name: coredumb
+    - gid: 1000
+
 userenv.user.create:
   user.present:
     - name: coredumb
     - shell: /usr/bin/zsh
     - uid: 1000
-    - gid: 1000
+    - gid_from_name: True
     - groups:
       - kvm
       - docker
