@@ -10,7 +10,6 @@ base.logrotate.logrotate.d:
   file.recurse:
     - name: /etc/logrotate.d
     - source: salt://base/files/logrotate.d
-    - clean: True
     - user: root
     - group: root
     - dir_mode: 750
