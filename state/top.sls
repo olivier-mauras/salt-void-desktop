@@ -4,3 +4,4 @@ base:
     - libvirt
     - docker
     - wm
+    - userenv
