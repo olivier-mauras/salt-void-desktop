@@ -7,7 +7,7 @@ docker.images.directory:
     - user: coredumb
     - group: coredumb
     - require: 
-      - user: userenv.user.create
+      - user: coredumb
 
 {% for repo, conf in salt['pillar.get']('docker:images').iteritems() %}
 docker.images.git.latest.{{ repo }}:
@@ -18,5 +18,5 @@ docker.images.git.latest.{{ repo }}:
     - force_reset: True
     - user: coredumb
     - require:
-      - user: userenv.user.create
+      - user: coredumb
 {% endfor %}
