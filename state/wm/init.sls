@@ -16,6 +16,7 @@ wm.pkg:
       - pulseaudio 
       - rxvt-unicode
       - rxvt-unicode-terminfo
+      - setxkbmap
       - sxhkd
       - vim
       - xauth
