@@ -1,0 +1,79 @@
+// vim:ts=4:sw=4:et
+{
+    "border": "pixel",
+    "current_border_width": 1,
+    "floating": "auto_off",
+    "geometry": {
+       "height": 354,
+       "width": 564,
+       "x": 0,
+       "y": 0
+    },
+    "name": "shell_4",
+    "percent": 0.5,
+    "swallows": [
+       {
+         "class": "^URxvt$",
+         "instance": "^shell_5$",
+         "title": "^shell_5$",
+         "transient_for": "^$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    // splitv split container with 2 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "splitv",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 354,
+               "width": 564,
+               "x": 0,
+               "y": 0
+            },
+            "name": "shell_5",
+            "percent": 0.5,
+            "swallows": [
+               {
+                 "class": "^URxvt$",
+                 "instance": "^shell_5$",
+                 "title": "^shell_5$",
+                 "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 354,
+               "width": 564,
+               "x": 0,
+               "y": 0
+            },
+            "name": "shell_5",
+            "percent": 0.5,
+            "swallows": [
+               {
+                 "class": "^URxvt$",
+                 "instance": "^shell_5$",
+                 "title": "^shell_5$",
+                 "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

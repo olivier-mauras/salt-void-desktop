@@ -1,0 +1,59 @@
+# XFT
+#Xft.dpi:       96
+Xft.antialias: 1
+Xft.hinting:   1
+Xft.hintstyle: hintfull
+Xft.rgba:      rgb
+
+URxvt.termName: rxvt-256color
+URxvt.transparent: true
+URxvt.inheritPixmap: False
+URxvt.imLocale: fr_CH.UTF-8
+URxvt.scrollBar: false
+URxvt.saveLines: 20000
+
+# URL matching / Irssi compat
+URxvt.cutchars: `"()'*<>[]{|}
+URxvt.perl-lib:         /usr/lib64/urxvt/perl/
+URxvt.perl-ext-common:  default,matcher
+URxvt.matcher.button:   1
+URxvt.urlLauncher: firefox
+
+URxvt.cursorBlink: true
+URxvt.geometry: 80x25
+URxvt*font:         -misc-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+URxvt.background:   #262626
+URxvt.foreground:   #d0d0d0
+urxvt.depth:        32
+URxvt.tintColor:    #262626
+#URxvt.visualBell: true
+URxvt.urgentOnBell: true
+#URxvt.internalBorder: 10
+#URxvt.borderLess: true
+#URxvt.borderColor: #888888
+
+!black
+*color0:         #000
+*color8:         #757773
+!red
+#*color1:         #a13861
+*color1:         #bd4273
+*color9:         #de6c97
+!green
+*color2:         #72a138
+*color10:        #9cf151
+!brown/yellow
+*color3:         #cbc346
+*color11:        #d5c76a
+!blue
+*color4:         #386ca1
+*color12:        #618cbb
+!magenta
+*color5:         #8d5dba
+*color13:        #6738a1
+!cyan
+*color6:         #38a19b
+*color14:        #5dbab5
+!white
+*color7:            #d0d0d0
+*color15:           #d0d0d0

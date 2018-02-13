@@ -1,0 +1,10 @@
+#!/bin/bash
+
+case $1 in 
+    -a) shift; xbps-alternatives "$@";;
+    -i) shift; xbps-install "$@";;
+    -p) shift; xbps-pkgdb "$@";;
+    -q) shift; xbps-query "$@";;
+    -r) shift; xbps-remove "$@";;
+    -rc) shift; xbps-reconfigure "$@";;
+esac

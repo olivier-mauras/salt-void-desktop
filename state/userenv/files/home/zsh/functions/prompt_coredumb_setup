@@ -1,0 +1,69 @@
+#!/bin/zsh
+setopt prompt_subst
+autoload -Uz vcs_info 
+ 
+#Initialization
+  usr_color="%{$fg[green]%}"
+  host_color="%{$fg[yellow]%}"
+  time_color="%{$fg[white]%}"
+  reset_color="%{$fg[white]%}"
+  dir_color="%{$fg[blue]%}"
+  [[ "$LOGNAME" == "root" ]] && dir_color="%{$fg[red]%}"
+ 
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-add-changes
+zstyle ':vcs_info:*' formats "%s %b %m%c" 
+
+function +vi-git-untracked(){
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep '??' &> /dev/null ; then
+        hook_com[staged]+='T'
+    fi
+}
+
+function +vi-git-add-changes() {
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]] && \
+        git status --porcelain | grep -e '^ M' -e '^D' -e '^ D' -e '^A' -e '^ A' &> /dev/null ; then
+        hook_com[misc]+='C'
+    fi
+}
+
+# get vcs_info to collect informations
+precmd(){ 
+    vcs_info
+}
+
+function get_rprompt(){
+    echo
+}
+
+function get_git {
+    if [[ $(git rev-parse --is-inside-work-tree 2> /dev/null) == 'true' ]]; then
+        GIT_HASH=(${=vcs_info_msg_0_})
+        [[ $GIT_HASH[1] == "git" ]] && VCS="±"
+        [[ -z $GIT_HASH[3] ]] && TRACK=""
+        if [ $( echo $GIT_HASH[3] | grep T ) ]; then TRACK="$TRACK%{$fg[red]%}*"; fi
+        if [ $( echo $GIT_HASH[3] | grep C ) ]; then TRACK="$TRACK%{$fg[green]%}+"; fi
+
+        echo -n "%{$fg[yellow]%}$VCS %{$fg[white]%}$GIT_HASH[2] $TRACK"
+    fi
+}
+
+# ZLE for vi mode
+vimode="[i]"
+function zle-line-init zle-keymap-select {
+        vimode="${${KEYMAP/vicmd/[c]}/(main|viins)/[i]}"
+        zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# Two lines prompt
+  PROMPT='${usr_color}%n${reset_color}@${host_color}%m ${time_color}%* ${vimode} ${dir_color}%~ 
+$(get_git)${dir_color}%# ${reset_color}'
+ 
+# Use %_ to show why you are in a continued prompt
+  PROMPT2="${dir_color}_> ${reset_color}"
+ 
+# Print the VCS info
+  RPROMPT='$(get_rprompt)'

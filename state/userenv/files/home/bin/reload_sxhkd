@@ -1,0 +1,3 @@
+#!/bin/bash
+killall sxhkd &>/dev/null
+sxhkd &

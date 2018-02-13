@@ -1,0 +1,87 @@
+#!/usr/bin/perl
+
+use strict;
+
+my $answer;
+my $temp_res;
+my $result;
+my $operator;
+
+while ( $answer=<STDIN> and $answer ne "q\n" ) {
+	help() if ( $answer eq "h\n" );
+	my @answer = split(/ /, $answer);
+	my $count = @answer;
+	foreach (@answer) {
+		if (/[a-zA-Z]/) {
+			print "Why do you want to put some letters?\n";
+		}
+	}
+	if ( $count eq 3 ) {
+		if ( @answer[2] =~ m/%/ ) {
+			@answer[2] =~ s/%//;
+			percentage(@answer[0],@answer[1],@answer[2]);
+		} else {
+			calculate(@answer[0],@answer[1],@answer[2]);
+		}
+	} elsif ( $count eq 2 ) {
+		if ( @answer[1] =~ m/%/ ) {
+			percentage($temp_res,@answer[0],@answer[1]);
+		} else {
+			calculate($temp_res,@answer[0],@answer[1]);
+		}
+	} else { print "Too many/few things...\n"; }
+}
+
+sub calculate {
+	my ($first,$operator,$second) = @_;
+	if ( $operator eq "+" ) {
+		$result = $first + $second;
+		$temp_res = $result;
+		print "$result\n";
+	} elsif ( $operator eq "-" ) {
+                $result = $first - $second;
+		$temp_res = $result;
+		print "$result\n";
+        } elsif ( $operator eq "*" ) {
+                $result = $first * $second;
+		$temp_res = $result;
+		print "$result\n";
+        } elsif ( $operator eq "/" ) {
+                $result = $first / $second;
+		$temp_res = $result;
+		print "$result\n";
+	} else { print "$operator << is not a valide operator!\n"; }
+}
+
+sub percentage {
+	my ($first,$operator,$second) = @_;
+	        if ( $operator eq "+" ) {
+			$result = $first*(1+$second/100);
+			$temp_res = $result;
+			print "$result\n";
+		} elsif ( $operator eq "-" ) {
+			$result = $first*(1-$second/100);
+			$temp_res = $result;
+			print "$result\n";
+		} else { print "$operator << is not a valide operator!\n"; }
+}
+
+sub help {
+	print "This script is a simple interactive calculator\n";
+	print "It supports basic operators [ - + * / ] and percentages\n";
+	print "Usage:\n";
+	print "[h] Print this help\n";
+	print "[q] Exit\n";
+	print "\n";
+	print "Calcul example: (Validate with <ENTER>)\n";
+	print "1280 - 172\n";
+	print "156 + 87\n";
+	print "186 * 55\n";
+	print "131 / 5\n";
+	print "+ 45 This will add 45 to you previous result\n";
+	print "6536 + 18%\n";
+	print "- 25% <ENTER>  This will reduce your previous result by 25%\n";
+
+}
+
+#End
