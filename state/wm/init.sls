@@ -43,6 +43,15 @@ wm.x11docker:
     - group: root
     - mode: 755
 
+# Add default alsa state only if file doesn't exists
+wm.file.var.lib.alsa.asound.state:
+  file.managed:
+    - name: /var/lib/alsa/asound.state
+    - source: salt://wm/files/var/lib/alsa/asound.state
+    - makedirs: True
+    - unless:
+      - ls /var/lib/alsa/asound.state
+
 # Pulseaudio required services
 # Dbus is already enabled by libvirt but that's for reusability sake. 
 {% for i in ['alsa', 'dbus', 'cgmanager' 'consolekit'] %}
