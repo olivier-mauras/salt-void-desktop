@@ -20,7 +20,6 @@ userenv.home_datas.{{ dest }}:
 # Set default salt path
 {% set home_files = 'salt://userenv/files/home/' %}
 
-
 # Deploy ~/bin
 {{ deploy_file(home_files + 'bin', '/home/coredumb/bin', mode='750', recurse='True') }}
 
@@ -32,6 +31,12 @@ userenv.home_datas.{{ dest }}:
 {{ deploy_file(home_files + 'vim/vimrc', '/home/coredumb/.vimrc') }}
 {{ deploy_file(home_files + 'vim/BusyBee.vim', '/home/coredumb/.vim/colors/BusyBee.vim') }}
 
+# X
+{{ deploy_file(home_files + 'Xdefaults', '/home/coredumb/.Xdefaults') }}
+{{ deploy_file(home_files + 'xinitrc', '/home/coredumb/.xinitrc') }}
+
+# i3
+{{ deploy_file(home_files + 'i3', '/home/coredumb/.i3', recurse='True') }}
+
 # Sxhkd
 {{ deploy_file(home_files + 'sxhkdrc', '/home/coredumb/.config/sxhkd/sxhkdrc') }}
-
