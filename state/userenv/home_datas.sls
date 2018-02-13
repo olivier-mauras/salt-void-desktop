@@ -22,15 +22,15 @@ userenv.home_datas.{{ dest }}:
 
 
 # Deploy ~/bin
-{{ deploy_file(home_files + '/bin', '/home/coredumb/bin', recurse='True') }}
+{{ deploy_file(home_files + 'bin', '/home/coredumb/bin', recurse='True') }}
 
 # ZSH
-{{ deploy_file(home_files + '/zsh', '/home/coredumb/.zsh', recurse='True') }}
-{{ deploy_file(home_files + '/zshrc', '/home/coredumb/.zshrc') }}
+{{ deploy_file(home_files + 'zsh', '/home/coredumb/.zsh', recurse='True') }}
+{{ deploy_file(home_files + 'zshrc', '/home/coredumb/.zshrc') }}
 
 # Vim
-{{ deploy_file(home_files + '/vim/vimrc', '/home/coredumb/.vimrc') }}
-{{ deploy_file(home_files + '/vim/BusyBee.vim', '/home/coredumb/.vim/colors/BusyBee.vim') }}
+{{ deploy_file(home_files + 'vim/vimrc', '/home/coredumb/.vimrc') }}
+{{ deploy_file(home_files + 'vim/BusyBee.vim', '/home/coredumb/.vim/colors/BusyBee.vim') }}
 
 # Sxhkd
 {{ deploy_file(home_files + 'sxhkdrc', '/home/coredumb/.config/sxhkd/sxhkdrc') }}
