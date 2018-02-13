@@ -4,8 +4,8 @@
 docker.images.directory:
   file.directory:
     - name: /srv/docker/images
-    - user: coredumb
-    - group: coredumb
+    - user: {{ pillar['username'] }}
+    - group: {{ pillar['username'] }}
     - require: 
       - user: userenv.user.create
 
@@ -16,7 +16,7 @@ docker.images.git.latest.{{ repo }}:
     - target: /srv/docker/images/{{ repo }}
     - force_checkout: True
     - force_reset: True
-    - user: coredumb
+    - user: {{ pillar['username'] }}
     - require:
       - user: userenv.user.create
 {% endfor %}

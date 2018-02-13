@@ -7,3 +7,6 @@ base.sudo.sudoers.d:
     - group: root
     - dir_mode: 750
     - file_mode: 440
+    - template: jinja
+    - context:
+        user: {{ pillar['username'] }}

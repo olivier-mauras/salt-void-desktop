@@ -1,2 +1,2 @@
-# sudo access for user coredumb
-coredumb ALL=(ALL) NOPASSWD: ALL
+# sudo access for user {{ user }}
+{{ user }} ALL=(ALL) NOPASSWD: ALL
