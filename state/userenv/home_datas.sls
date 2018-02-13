@@ -1,8 +1,12 @@
 # Populate user config files
 # Let's use a macro for that
-{% macro deploy_file(source, dest, user='coredumb', group='coredumb', mode='640', makedirs='True') %}
+{% macro deploy_file(source, dest, user='coredumb', group='coredumb', mode='640', makedirs='True', recurse='False') %}
 userenv.home_datas.{{ dest }}:
+{% if recurse %}
+  file.recurse:
+{% else %}
   file.managed:
+{% endif %}
     - name: {{ dest }}
     - source: {{ source }}
     - user: {{ user }}
@@ -16,10 +20,10 @@ userenv.home_datas.{{ dest }}:
 
 
 # Deploy ~/bin
-{{ deploy_file(home_files + '/bin', '/home/coredumb/bin') }}
+{{ deploy_file(home_files + '/bin', '/home/coredumb/bin', recurse='True') }}
 
 # ZSH
-{{ deploy_file(home_files + '/zsh', '/home/coredumb/.zsh') }}
+{{ deploy_file(home_files + '/zsh', '/home/coredumb/.zsh', recurse='True') }}
 {{ deploy_file(home_files + '/zshrc', '/home/coredumb/.zshrc') }}
 
 # Vim
