@@ -15,6 +15,7 @@ wm.pkg:
       - kbd
       - perl-AnyEvent-I3
       - pulseaudio 
+      - python3-psutil
       - rxvt-unicode
       - rxvt-unicode-terminfo
       - setxkbmap
