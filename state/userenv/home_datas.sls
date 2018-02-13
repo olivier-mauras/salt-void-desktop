@@ -22,7 +22,7 @@ userenv.home_datas.{{ dest }}:
 
 
 # Deploy ~/bin
-{{ deploy_file(home_files + 'bin', '/home/coredumb/bin', recurse='True') }}
+{{ deploy_file(home_files + 'bin', '/home/coredumb/bin', mode='750', recurse='True') }}
 
 # ZSH
 {{ deploy_file(home_files + 'zsh', '/home/coredumb/.zsh', recurse='True') }}
