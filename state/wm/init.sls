@@ -12,6 +12,7 @@ wm.pkg:
       - i3
       - i3lock
       - i3status
+      - kbd
       - perl-AnyEvent-I3
       - pulseaudio 
       - rxvt-unicode
