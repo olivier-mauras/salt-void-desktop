@@ -2,16 +2,18 @@
 # Let's use a macro for that
 {% macro deploy_file(source, dest, user='coredumb', group='coredumb', mode='640', makedirs='True', recurse='False') %}
 userenv.home_datas.{{ dest }}:
-{% if recurse %}
+{% if recurse == 'True' %}
   file.recurse:
+    - file_mode: {{ mode }}
+    - dir_mode: 750
 {% else %}
   file.managed:
+    - mode: {{ mode }}
 {% endif %}
     - name: {{ dest }}
     - source: {{ source }}
     - user: {{ user }}
     - group: {{ group }}
-    - mode: {{ mode }}
     - makedirs: {{ makedirs }}
 {% endmacro %}
 
