@@ -6,3 +6,4 @@ base.packages:
       - rsyslog
       - logrotate
       - sudo
+      - tcpdump
