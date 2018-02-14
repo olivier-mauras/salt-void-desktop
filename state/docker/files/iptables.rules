@@ -10,15 +10,12 @@ COMMIT
 :INPUT ACCEPT [177:12292]
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [108:10868]
-{# Will loop over docker:networks pillar #}
 {%- for network, config in salt['pillar.get']('docker:networks', {}).iteritems() -%}
-{# Will reloop and match '_<network>' to interface #}
 {%- set m_network = '_' + network -%}
 {%- for network_2, config_2 in salt['pillar.get']('docker:networks', {}).iteritems() -%}
-{%- if m_network not in config_2['interface'] -%}
+{%- if m_network not in config_2['interface'] %}
 -A INPUT -s {{ config['subnet'] }} -i {{ config_2['interface'] }} -j REJECT --reject-with icmp-port-unreachable
-{%- endif -%}
+{%- endif %}
 {%- endfor -%}
-{%- endfor -%}
+{% endfor %}
 COMMIT
-
