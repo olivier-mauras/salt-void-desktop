@@ -2,6 +2,7 @@
 include:
   - .lvm
   - .images
+  - .iptables
 
 # Install packages
 docker.pkg:

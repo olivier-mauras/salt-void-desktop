@@ -1,0 +1,24 @@
+# Default host iptables
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+COMMIT
+# Each network should only be able to communicate with their own interface and not others
+*filter
+:INPUT ACCEPT [177:12292]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [108:10868]
+{# Will loop over docker:networks pillar #}
+{%- for network, config in salt['pillar.get']('docker:networks', {}).iteritems() -%}
+{# Will reloop and match '_<network>' to interface #}
+{%- set m_network = '_' + network -%}
+{%- for network_2, config_2 in salt['pillar.get']('docker:networks', {}).iteritems() -%}
+{%- if m_network not in config_2['interface'] -%}
+-A INPUT -s {{ config['subnet'] }} -i {{ config_2['interface'] }} -j REJECT --reject-with icmp-port-unreachable
+{%- endif -%}
+{%- endfor -%}
+{%- endfor -%}
+COMMIT
+
