@@ -7,3 +7,4 @@ base.packages:
       - logrotate
       - sudo
       - tcpdump
+      - iptables
