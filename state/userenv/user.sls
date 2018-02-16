@@ -13,6 +13,7 @@ userenv.user.create:
       - kvm
       - docker
       - libvirt
+      - audio
       - video
 {% if pillar['user_passwd'] is defined %}
     - password: {{ pillar['user_passwd'] }}
