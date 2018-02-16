@@ -32,6 +32,7 @@ wm.pkg:
       - xorg-server-xephyr
       - xpra
       - xrandr
+      - xset
       - xterm
       - zsh
       - zsh-completions
