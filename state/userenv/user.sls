@@ -6,7 +6,7 @@ userenv.group.create:
 userenv.user.create:
   user.present:
     - name: coredumb
-    - shell: /usr/bin/zsh
+    - shell: /bin/zsh
     - uid: 1000
     - gid_from_name: True
     - groups:
