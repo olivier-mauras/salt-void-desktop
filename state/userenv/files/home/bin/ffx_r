@@ -2,5 +2,6 @@
 x11docker -v -c -y --wm=i3wm_red --size=1364x749 -- \
   "--shm-size 2g \
   --cap-drop=ALL \
-  --net untrust" \
+  --net untrust \
+  -v ~/docker/resolv/untrust:/etc/resolv.conf:ro" \
   firefox:latest firefox --private-window

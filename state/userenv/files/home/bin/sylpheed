@@ -6,5 +6,6 @@ x11docker -v -c -y --wm=i3wm_green --size=1364x749 -- \
   -v ~/.themes:/fakehome/coredumb/.themes \
   -v ~/.icons:/fakehome/coredumb/.icons \
   -v ~/docker/transit:/fakehome/coredumb/transit \
-  --net trust" \
+  --net trust \
+  -v ~/docker/resolv/trust:/etc/resolv.conf:ro" \
   sylpheed:latest sylpheed
