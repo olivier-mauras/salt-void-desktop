@@ -4,7 +4,7 @@ base.services.removed.tty{{ i }}:
     - name: /etc/runit/runsvdir/default/agetty-tty{{ i }}
 {% endfor %}
 
-{% for i in ['cronie', 'rsyslogd', 'iptables'] %}
+{% for i in ['cronie', 'rsyslogd', 'iptables', 'netdata'] %}
 base.services.enabled.{{ i }}:
   file.symlink:
     - name: /etc/runit/runsvdir/default/{{ i }}

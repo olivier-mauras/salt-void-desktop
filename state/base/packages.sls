@@ -2,9 +2,11 @@ base.packages:
   pkg.installed:
     - refresh: True
     - pkgs:
+      - curl
       - cronie
-      - rsyslog
       - logrotate
+      - netdata
+      - rsyslog
       - sudo
       - tcpdump
       - iptables

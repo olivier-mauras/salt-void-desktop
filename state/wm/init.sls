@@ -3,6 +3,7 @@ wm.pkg:
   pkg.installed:
     - pkgs:
       - ConsoleKit2
+      - CopyQ
       - alsa-utils
       - dejavu-fonts-ttf
       - dmenu
@@ -13,6 +14,7 @@ wm.pkg:
       - i3lock
       - i3status
       - kbd
+      - pavucontrol
       - perl-AnyEvent-I3
       - pulseaudio 
       - python3-psutil
@@ -31,6 +33,7 @@ wm.pkg:
       - xorg-minimal
       - xorg-server-xephyr
       - xpra
+      - xprop
       - xrandr
       - xset
       - xterm
