@@ -182,14 +182,19 @@ for_window [class="^Xephyr$"] floating disable, border pixel 0
 assign [class="^URxvt$" instance="^irc$"] → 3
 assign [class="^URxvt$" instance="^shell_3$"] → 4
 assign [class="^URxvt$" instance="^shell_4$"] → 5
+assign [class="^Virt-manager$"] → 7
 
 # App exec bind
 #bindsym Mod1+F2 exec ~/bin/reload_sxhkd
 
 # App exec start
-exec --no-startup-id i3-msg 'workspace 3; exec urxvt -name irc'
+exec --no-startup-id i3-msg 'workspace 1; append_layout ~/.i3/workspace-1.json; exec ffx_g'
+exec --no-startup-id i3-msg 'workspace 2; append_layout ~/.i3/workspace-2.json; exec urxvt -name irc -e rshell'
+exec --no-startup-id i3-msg 'workspace 3; append_layout ~/.i3/workspace-3.json; exec urxvt -name shell_3' 
 exec --no-startup-id i3-msg 'workspace 4; append_layout ~/.i3/workspace-4.json; exec urxvt -name shell_4; exec urxvt -name shell_4'
 exec --no-startup-id i3-msg 'workspace 5; append_layout ~/.i3/workspace-5.json; exec urxvt -name shell_5; exec urxvt -name shell_5; exec urxvt -name shell_5'
 exec --no-startup-id i3-msg 'workspace 6; append_layout ~/.i3/workspace-6.json; exec sylpheed'
-exec --no-startup-id i3-msg 'workspace 3'
+exec --no-startup-id i3-msg 'workspace 7; append_layout ~/.i3/workspace-7.json; exec virt-manager'
+exec --no-startup-id i3-msg 'workspace 2'
 exec --no-startup-id i3-msg exec ~/bin/reload_sxhkd
+exec --no-startup-id i3-msg exec copyq

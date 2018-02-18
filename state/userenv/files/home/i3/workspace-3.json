@@ -1,0 +1,34 @@
+// vim:ts=4:sw=4:et
+{
+    // tabbed split container with 1 children
+    "border": "pixel",
+    "floating": "auto_off",
+    "layout": "tabbed",
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 1,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 354,
+               "width": 564,
+               "x": 0,
+               "y": 0
+            },
+            "name": "urxvt",
+            "percent": 1,
+            "swallows": [
+               {
+                "class": "^URxvt$",
+                "instance": "^shell_3$",
+                "title": "^shell_3$",
+                "transient_for": "^$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

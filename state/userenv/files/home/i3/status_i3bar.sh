@@ -19,16 +19,16 @@ SS="${BLUE}/"
 R="^fg()"
 
 # Variables
-CPUT=60
+CPUT=70
 GPUT=65
-DISKP="/home"
+DISKP="/var"
 DISKM=90
 DISKH=95
 
 cpu_temp() {
     TEMP=$CPUT
     unset T1
-    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input) / 1000))
+    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input) / 1000))
 
     echo "${T1}°"
 }
@@ -36,7 +36,7 @@ cpu_temp() {
 cpu_color() {
     TEMP=$CPUT
     unset T1
-    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input) / 1000))
+    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input) / 1000))
 
     if [ $T1 -ge $TEMP ]; then
         CPU_COLOR="${RED}"
@@ -133,7 +133,7 @@ mem_color() {
 }
 
 cpu() {
-    echo "$(~/.i3/get_cpu_dzen.py)"
+  echo "$(curl "127.0.0.1:19999/api/v1/data?chart=system.cpu" 2>/dev/null | head -5 | tail -1 | tr ']' ' ' | awk -F, '{printf "%3.0f%", $7+$8}' | sed 's/.* //')"
 }
 
 network_() {
@@ -214,9 +214,6 @@ do
             {\"name\":\"cpu\",\"full_text\":\"CPU:\", \"color\": \"${DG}\", \"separator\": false}, \
             {\"name\":\"cpu_val\",\"full_text\":\"$(cpu_temp)\", \"color\": \"$(cpu_color)\", \"separator\": false}, \
             {\"name\":\"sep\",\"full_text\":\"|\", \"color\": \"${BLUE}\", \"separator\": false}, \
-            {\"name\":\"bri\",\"full_text\":\"BRI:\", \"color\": \"${DG}\", \"separator\": false}, \
-            {\"name\":\"bri_val\",\"full_text\":\"$(bright_)\", \"color\": \"${LG}\", \"separator\": false}, \
-            {\"name\":\"sep\",\"full_text\":\"|\", \"color\": \"${BLUE}\", \"separator\": false}, \
             {\"name\":\"bat\",\"full_text\":\"BAT:\", \"color\": \"${DG}\", \"separator\": false}, \
             {\"name\":\"bat_val\",\"full_text\":\"$(bat_)\", \"color\": \"$(bat_color)\", \"separator\": false}, \
             {\"name\":\"sep\",\"full_text\":\"|\", \"color\": \"${BLUE}\", \"separator\": false}, \
@@ -226,6 +223,6 @@ do
             {\"name\":\"date\",\"full_text\":\"$(date +"%a, %d.%m")\", \"color\": \"${DG}\", \"separator\": false}, \
             {\"name\":\"time\",\"full_text\":\"$(date +"%H:%M")\", \"color\": \"${WHITE}\"} \
     ]"
-    sleep 1
+    sleep 2
 done
 
