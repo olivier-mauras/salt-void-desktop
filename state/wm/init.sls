@@ -20,6 +20,7 @@ wm.pkg:
       - python3-psutil
       - rxvt-unicode
       - rxvt-unicode-terminfo
+      - scrot
       - setxkbmap
       - sxhkd
       - vim
