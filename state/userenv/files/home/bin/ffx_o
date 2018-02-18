@@ -1,0 +1,8 @@
+#!/bin/bash
+x11docker -v -c -y --wm=i3wm_orange --size=1364x749 -- \
+  "--shm-size 2g \
+  -v ~/docker/ffx_orange:/fakehome/coredumb \
+  -v /run/user/1000/pulse:/run/user/1000/pulse \
+  -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
+  --net untrust" \
+  firefox:latest firefox

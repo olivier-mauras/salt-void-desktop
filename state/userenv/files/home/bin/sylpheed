@@ -1,0 +1,10 @@
+#!/bin/bash
+x11docker -v -c -y --wm=i3wm_green --size=1364x749 -- \
+  "-v ~/docker/gnupg:/fakehome/coredumb/.gnupg \
+  -v ~/docker/sylpheed:/fakehome/coredumb/.sylpheed-2.0 \
+  -v ~/.gtkrc-2.0:/fakehome/coredumb/.gtkrc-2.0 \
+  -v ~/.themes:/fakehome/coredumb/.themes \
+  -v ~/.icons:/fakehome/coredumb/.icons \
+  -v ~/docker/transit:/fakehome/coredumb/transit \
+  --net trust" \
+  sylpheed:latest sylpheed

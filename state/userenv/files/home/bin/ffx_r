@@ -1,0 +1,6 @@
+#!/bin/bash
+x11docker -v -c -y --wm=i3wm_red --size=1364x749 -- \
+  "--shm-size 2g \
+  --cap-drop=ALL \
+  --net untrust" \
+  firefox:latest firefox --private-window

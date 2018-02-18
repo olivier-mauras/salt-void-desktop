@@ -1,0 +1,4 @@
+#!/bin/bash
+x11docker -v -c -y --wm=i3wm_green --size=1364x749 -- \
+  "-v ~/docker/transit:/fakehome/coredumb/transit" \
+  evince:latest evince

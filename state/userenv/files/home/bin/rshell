@@ -1,0 +1,13 @@
+#!/bin/bash
+. ~/.ssh-agent
+docker run -it --rm -h rshell \
+  -v ~/.zshrc:/home/coredumb/.zshrc:ro \
+  -v ~/.zsh:/home/coredumb/.zsh:ro \
+  -v ~/.ssh/known_hosts:/home/coredumb/.ssh/known_hosts \
+  -v ~/docker/transit:/home/coredumb/transit \
+  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
+  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
+  --net untrust \
+  -v ~/docker/resolv/untrust:/etc/resolv.conf:ro \
+  --cap-drop=ALL \
+  alpine_shell
