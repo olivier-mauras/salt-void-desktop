@@ -3,12 +3,24 @@ setopt prompt_subst
 autoload -Uz vcs_info 
  
 #Initialization
-  usr_color="%{$fg[green]%}"
+hostname=$(hostname)
+
+usr_color="%{$fg[green]%}"
+if [[ "$hostname" == 'master.internal' ]]; then
   host_color="%{$fg[yellow]%}"
-  time_color="%{$fg[white]%}"
-  reset_color="%{$fg[white]%}"
-  dir_color="%{$fg[blue]%}"
-  [[ "$LOGNAME" == "root" ]] && dir_color="%{$fg[red]%}"
+elif [[ "$hostname" == 'rshell' ]]; then
+  host_color="%{$fg[red]%}"
+elif [[ "$hostname" == 'ishell' ]]; then
+  host_color="%{$fg[blue]%}"
+elif [[ "$hostname" == 'dev' ]]; then
+  host_color="%{$fg[cyan]%}"
+else
+  host_color="%{$fg[yellow]%}"
+fi
+time_color="%{$fg[white]%}"
+reset_color="%{$fg[white]%}"
+dir_color="%{$fg[blue]%}"
+[[ "$LOGNAME" == "root" ]] && dir_color="%{$fg[red]%}"
  
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*+set-message:*' hooks git-untracked git-add-changes

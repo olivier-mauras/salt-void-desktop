@@ -39,7 +39,7 @@ zstyle ':completion:*' special-dirs true
 # ZSH options END
 
 # Path
-PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/games:/usr/lib64/java/bin:/usr/lib64/kde4/libexec:/usr/lib64/qt/bin:~/stuff/Go/bin:~/bin
+PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:~/dev/Go/bin:~/bin
 MANPATH=${MANPATH}:/usr/share/man
 
 # Declare lang
@@ -47,7 +47,7 @@ MANPATH=${MANPATH}:/usr/share/man
 LC_CTYPE='fr_CH.utf-8'
 
 # Force xterm for urxvt compatibility 
-TERM=xterm
+#TERM=xterm
 
 # Set some usefull variables
 export PAGER=less
@@ -77,7 +77,7 @@ alias xkbch="setxkbmap ch fr -option ctrl:nocaps"
 # Shell startup
 # Charge private key
 [ $(fgconsole 2> /dev/null) ] && register_ssh
-source ~/.ssh-agent
+#source ~/.ssh-agent
 
 # Load automatically X
 [ $(fgconsole 2> /dev/null) ] && startx
