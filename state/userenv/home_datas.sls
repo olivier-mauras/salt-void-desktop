@@ -7,7 +7,9 @@
 userenv.home_datas.{{ dest }}:
 {% if recurse == 'True' %}
   file.recurse:
+{% if mode != 'default' %}
     - file_mode: {{ mode }}
+{% endif %}
     - dir_mode: 750
 {% else %}
   file.managed:
@@ -42,7 +44,7 @@ userenv.home_datas.{{ dest }}:
 {{ deploy_file(home_files + 'xinitrc', homedir + '.xinitrc') }}
 
 # i3
-{{ deploy_file(home_files + 'i3', homedir + '.i3', recurse='True') }}
+{{ deploy_file(home_files + 'i3', homedir + '.i3', mode='default', recurse='True') }}
 
 # Sxhkd
 {{ deploy_file(home_files + 'sxhkdrc', homedir + '.config/sxhkd/sxhkdrc') }}
