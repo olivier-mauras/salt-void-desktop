@@ -25,9 +25,7 @@ if [ -f $usermodmap ]; then
     xmodmap $usermodmap
 fi
 
-# Start pulseaudio X session
-start-pulseaudio-x11 &
-
 # Start i3
+xset b off
 setxkbmap ch fr -option ctrl:nocaps
 exec i3 -c ~/.i3/config

@@ -2,10 +2,10 @@ XF86Launch1
     urxvt
 
 XF86AudioMute
-    pactl set-sink-mute 0 toggle
+    pactl set-sink-mute 8 toggle
 
 XF86AudioLowerVolume
-    pactl set-sink-volume 0 -10%
+    pactl set-sink-volume 8 -10%
 
 XF86AudioRaiseVolume
-    pactl set-sink-volume 0 +10%
+    pactl set-sink-volume 8 +10%
