@@ -11,6 +11,7 @@ userenv.home_datas.{{ dest }}:
     - file_mode: {{ mode }}
 {% endif %}
     - dir_mode: 750
+    - keep_symlinks: True
 {% else %}
   file.managed:
     - mode: {{ mode }}
