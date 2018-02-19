@@ -1,7 +1,12 @@
 #!/bin/bash
+[[ -d ~/docker/ffx_blue ]] && rm -rf ~/docker/ffx_blue
+cp -r ~/docker/firefox_pristine ~/docker/ffx_blue
+
 x11docker -v -c -y --wm=i3wm_blue --size=1364x749 -- \
   "--shm-size 2g \
   -v ~/docker/ffx_blue:/fakehome/coredumb \
   --net trust \
   -v ~/docker/resolv/trust:/etc/resolv.conf:ro" \
   firefox:latest firefox
+
+rm -rf ~/docker/ffx_blue

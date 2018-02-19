@@ -1,4 +1,7 @@
 #!/bin/bash
+[[ -d ~/docker/ffx_pink ]] && rm -rf ~/docker/ffx_pink
+cp -r ~/docker/firefox_pristine ~/docker/ffx_pink
+
 x11docker -v -c -y --wm=i3wm_pink --size=1364x749 -- \
   "--shm-size 2g \
   -v ~/docker/ffx_pink:/fakehome/coredumb \
@@ -7,3 +10,5 @@ x11docker -v -c -y --wm=i3wm_pink --size=1364x749 -- \
   --net untrust \
   -v ~/docker/resolv/untrust:/etc/resolv.conf:ro" \
   firefox:latest firefox --private-window
+
+rm -rf ~/docker/ffx_pink
