@@ -40,6 +40,10 @@ wm.pkg:
       - xterm
       - zsh
       - zsh-completions
+{% if salt['file.file_exists']('/sys/class/power_supply/BAT0', False) %}
+      - pm-utils
+      - upower
+{% endif %}
 
 # Install x11docker
 wm.x11docker:
