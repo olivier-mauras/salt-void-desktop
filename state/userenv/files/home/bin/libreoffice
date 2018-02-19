@@ -4,5 +4,6 @@ x11docker -v -c -y --wm=i3wm_blue --size=1364x749 -- \
   "-v ~/.config/libreoffice:/fakehome/coredumb/.config/libreoffice \
   -v ~/documents:/fakehome/coredumb/documents \
   -v ~/.icons:/fakehome/coredumb/.icons \
-  -v ~/docker/transit:/fakehome/coredumb/transit" \
+  -v ~/docker/transit:/fakehome/coredumb/transit \
+  --net none" \
   libreoffice:latest lo${APP}
