@@ -196,5 +196,6 @@ exec --no-startup-id i3-msg 'workspace 5; append_layout ~/.i3/workspace-5.json; 
 exec --no-startup-id i3-msg 'workspace 6; append_layout ~/.i3/workspace-6.json; exec sylpheed'
 exec --no-startup-id i3-msg 'workspace 7; append_layout ~/.i3/workspace-7.json; exec virt-manager'
 exec --no-startup-id i3-msg 'workspace 2'
+exec --no-startup-id i3-msg exec ~/bin/synclient
 exec --no-startup-id i3-msg exec ~/bin/reload_sxhkd
 exec --no-startup-id i3-msg exec copyq
