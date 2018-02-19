@@ -40,7 +40,7 @@ wm.pkg:
       - xterm
       - zsh
       - zsh-completions
-{% if salt['file.file_exists']('/sys/class/power_supply/BAT0') %}
+{% if salt['file.is_link']('/sys/class/power_supply/BAT0') %}
       - pm-utils
       - upower
 {% endif %}
