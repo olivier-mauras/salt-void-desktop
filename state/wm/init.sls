@@ -4,6 +4,7 @@ wm.pkg:
     - pkgs:
       - ConsoleKit2
       - CopyQ
+      - ImageMagick
       - alsa-utils
       - dejavu-fonts-ttf
       - dmenu
