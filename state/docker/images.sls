@@ -16,6 +16,7 @@ docker.images.git.latest.{{ repo }}:
     - target: /srv/docker/images/{{ repo }}
     - force_checkout: True
     - force_reset: True
+    - force_fetch: True
     - user: {{ pillar['username'] }}
     - require:
       - user: userenv.user.create
