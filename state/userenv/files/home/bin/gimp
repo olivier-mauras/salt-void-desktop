@@ -1,0 +1,6 @@
+#!/bin/bash
+x11docker -c --xpra --size=1364x749 -- \
+  "-v ~/docker/gimp:/fakehome/coredumb/.gimp-2.8 \
+  -v ~/docker/transit:/fakehome/coredumb/transit \
+  --net none" \
+  gimp:latest gimp

@@ -1,0 +1,14 @@
+#!/bin/bash
+[[ -d ~/docker/ffx_tor ]] && rm -rf ~/docker/ffx_tor
+cp -r ~/docker/firefox_pristine ~/docker/ffx_tor
+
+x11docker -c -y --wm=i3wm_red --size=1364x749 -- \
+  "--shm-size 2g \
+  -v ~/docker/ffx_tor:/fakehome/coredumb \
+  -v /run/user/1000/pulse:/run/user/1000/pulse \
+  -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
+  --net tor \
+  -v ~/docker/resolv/tor:/etc/resolv.conf:ro" \
+  firefox:latest firefox --private-window
+
+rm -rf ~/docker/ffx_tor
