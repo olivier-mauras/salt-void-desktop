@@ -1,5 +1,5 @@
 #!/bin/bash
-x11docker -v -c -y --wm=i3wm_green --size=1364x749 -- \
+x11docker -c -y --wm=i3wm_green --size=1364x749 -- \
   "-v ~/docker/transit:/fakehome/coredumb/transit \
   --net none" \
   geeqie:latest geeqie

@@ -2,7 +2,7 @@
 [[ -d ~/docker/ffx_blue ]] && rm -rf ~/docker/ffx_blue
 cp -r ~/docker/firefox_pristine ~/docker/ffx_blue
 
-x11docker -v -c -y --wm=i3wm_blue --size=1364x749 -- \
+x11docker -c -y --wm=i3wm_blue --size=1364x749 -- \
   "--shm-size 2g \
   -v ~/docker/ffx_blue:/fakehome/coredumb \
   --net trust \

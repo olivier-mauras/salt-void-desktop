@@ -1,5 +1,5 @@
 #!/bin/bash
-x11docker -v -c -y --wm=i3wm_green --size=1364x749 -- \
+x11docker -c -y --wm=i3wm_green --size=1364x749 -- \
   "--shm-size 2g \
   --cpus 4 \
   -v ~/docker/ffx_green:/fakehome/coredumb \

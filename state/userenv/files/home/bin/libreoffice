@@ -1,6 +1,6 @@
 #!/bin/bash
 APP=$(echo $(basename ${0}) | cut -f 2 -d _)
-x11docker -v -c -y --wm=i3wm_blue --size=1364x749 -- \
+x11docker -c -y --wm=i3wm_blue --size=1364x749 -- \
   "-v ~/.config/libreoffice:/fakehome/coredumb/.config/libreoffice \
   -v ~/documents:/fakehome/coredumb/documents \
   -v ~/.icons:/fakehome/coredumb/.icons \
