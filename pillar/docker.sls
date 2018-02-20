@@ -15,7 +15,7 @@ docker:
     tor:
       driver: macvlan
       subnet: 10.100.0.0/24
-      gateway: 10.100.0.1
+      gateway: 10.100.0.64
       range: 10.100.0.1/26
       interface: br_tor
   storage:
