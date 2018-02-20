@@ -1,4 +1,8 @@
 #!/bin/bash
+[[ -d ~/docker/ffx_orange ]] && rm -rf ~/docker/ffx_orange
+cp -r ~/docker/firefox_pristine ~/docker/ffx_orange
+cp docker/ffx_green/.mozilla/firefox/*/places.sqlite ~/docker/ffx_orange/.mozilla/firefox/*.*/
+
 x11docker -c -y --wm=i3wm_orange --size=1364x749 -- \
   "--shm-size 2g \
   -v ~/docker/ffx_orange:/fakehome/coredumb \
@@ -7,3 +11,5 @@ x11docker -c -y --wm=i3wm_orange --size=1364x749 -- \
   --net untrust \
   -v ~/docker/resolv/untrust:/etc/resolv.conf:ro" \
   firefox:latest firefox
+
+rm -rf ~/docker/ffx_orange
