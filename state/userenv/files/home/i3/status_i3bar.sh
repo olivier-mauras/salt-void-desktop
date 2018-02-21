@@ -28,7 +28,7 @@ DISKH=95
 cpu_temp() {
     TEMP=$CPUT
     unset T1
-    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input) / 1000))
+    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input) / 1000))
 
     echo "${T1}°"
 }
@@ -36,7 +36,7 @@ cpu_temp() {
 cpu_color() {
     TEMP=$CPUT
     unset T1
-    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input) / 1000))
+    T1=$(($(cat /sys/devices/platform/coretemp.0/hwmon/hwmon*/temp1_input) / 1000))
 
     if [ $T1 -ge $TEMP ]; then
         CPU_COLOR="${RED}"
@@ -48,7 +48,7 @@ cpu_color() {
 }
 
 snd_() {
-    pactl list sinks | grep Volume: | head -1 | awk '{print $5}'
+    pactl list sinks | grep Volume | head -1 | awk '{print $5}'
 }
 
 bat_() {
