@@ -43,8 +43,7 @@ PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:~/dev/Go/bin:~
 MANPATH=${MANPATH}:/usr/share/man
 
 # Declare lang
-#source /etc/profile.env
-LC_CTYPE='fr_CH.utf-8'
+[[ -s /etc/locale.conf ]] && . /etc/locale.conf
 
 # Force xterm for urxvt compatibility 
 #TERM=xterm
