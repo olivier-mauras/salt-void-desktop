@@ -2,7 +2,7 @@ XF86Launch1
     urxvt
 
 XF86AudioMute
-    pactl set-sink-volume `pactl list sinks | head -1 | cut -f 2 -d '#'` toggle
+    pactl set-sink-mute `pactl list sinks | head -1 | cut -f 2 -d '#'` toggle
 
 XF86AudioLowerVolume
     pactl set-sink-volume `pactl list sinks | head -1 | cut -f 2 -d '#'` -10%
