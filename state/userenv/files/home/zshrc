@@ -73,6 +73,9 @@ alias suspend='sudo pm-suspend'
 alias hibernate='sudo pm-hibernate'
 alias xkbch="setxkbmap ch fr -option ctrl:nocaps"
 
+# Dev aliases
+alias generate_blog="pushd ~/dev/virtualenvs/pelican/blog/ && source ../bin/activate && make html && cd output_ && rm -rf * && cp -a ../output/* . && git add . && git commit -am 'Blog update' && git push -f origin master && cd .. && git commit -a -m \"$(date)\" && git push origin master; popd"
+
 # Shell startup
 # Charge private key
 [ $(fgconsole 2> /dev/null) ] && register_ssh
