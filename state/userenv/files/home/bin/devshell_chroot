@@ -14,5 +14,8 @@ docker run -it --rm -h dev \
   --net trust \
   -v ~/docker/resolv/trust:/etc/resolv.conf:ro \
   --cap-drop=ALL \
+  --cap-add=SYS_CHROOT \
+  --cap-add=SETPCAP \
+  --cap-add=SYS_ADMIN \
   "$@" \
   dev_shell
