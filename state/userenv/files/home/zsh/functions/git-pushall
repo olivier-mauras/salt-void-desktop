@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+[[ -z "$@" ]] && ARGS="master" || ARGS="$@"
+for remote in $(git remote); do
+  git push $remote $ARGS
+done
