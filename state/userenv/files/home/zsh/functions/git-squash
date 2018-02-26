@@ -1,0 +1,29 @@
+#!/bin/zsh
+OPTIND=1
+
+# Parse arguments cleanly
+while getopts "l" opt; do
+    case "$opt" in
+    l)  LAST=1
+        ;;
+    *)  echo "Only -l option is supported"; exit 2
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+[ "$1" = "--" ] && shift
+
+# Get commit to reset to
+rollback="$@"
+[[ -z $rollback ]] && echo "You must specify where you wanna squash" && exit 3
+
+if [[ $LAST ]]; then
+    COMMIT=$(git log --oneline | head -1 | cut -f 1 -d ' ')
+else 
+    COMMIT="HEAD"
+fi
+
+git reset --soft $rollback
+git commit --amend -C $COMMIT
+
