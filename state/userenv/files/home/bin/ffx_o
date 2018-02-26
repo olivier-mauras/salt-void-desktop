@@ -1,7 +1,7 @@
 #!/bin/bash
 [[ -d ~/docker/ffx_orange ]] && rm -rf ~/docker/ffx_orange
 cp -r ~/docker/firefox_pristine ~/docker/ffx_orange
-cp docker/ffx_green/.mozilla/firefox/*/places.sqlite ~/docker/ffx_orange/.mozilla/firefox/*.*/
+cp -r docker/ffx_green/.mozilla/firefox/*/bookmarkbackups/ ~/docker/ffx_orange/.mozilla/firefox/*.*/
 
 x11docker -c -y --wm=i3wm_orange --size=1364x749 -- \
   "--shm-size 2g \
