@@ -6,6 +6,7 @@ cp docker/ffx_green/.mozilla/firefox/*/places.sqlite ~/docker/ffx_orange/.mozill
 x11docker -c -y --wm=i3wm_orange --size=1364x749 -- \
   "--shm-size 2g \
   -v ~/docker/ffx_orange:/fakehome/coredumb \
+  -v ~/docker/transit:/fakehome/coredumb/transit \
   -v /run/user/1000/pulse:/run/user/1000/pulse \
   -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
   --net untrust \
