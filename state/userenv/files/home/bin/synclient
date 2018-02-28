@@ -1,7 +1,9 @@
 #!/bin/bash
+synclient FingerLow=10
+synclient HorizTwoFingerScroll=1
 synclient MaxSpeed=4        
 synclient MinSpeed=2
-synclient HorizTwoFingerScroll=1
+synclient PalmDetect=1
 synclient TapButton1=1          
 synclient TapButton2=2
 synclient TapButton3=3

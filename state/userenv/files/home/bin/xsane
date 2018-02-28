@@ -1,0 +1,6 @@
+#!/bin/bash
+x11docker -c -y --wm=i3wm_green --size=1364x749 --runit -- \
+  "-v ~/docker/xsane:/fakehome/coredumb/.sane \
+  -v ~/docker/transit:/fakehome/coredumb/transit \
+  --net trust" \
+  xsane:latest xsane 'hpaio:/net/Officejet_Pro_8600?ip=10.60.60.160'
