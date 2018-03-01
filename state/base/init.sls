@@ -3,3 +3,4 @@ include:
   - .services
   - .logrotate
   - .sysctl
+  - .rc_local

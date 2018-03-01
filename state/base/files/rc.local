@@ -1,0 +1,3 @@
+# Customized rc.local
+# Set deadline scheduler by default
+echo deadline > /sys/block/sda/queue/scheduler
