@@ -1,9 +1,24 @@
 #!/bin/bash
+
 APP=$(echo $(basename ${0}) | cut -f 2 -d _)
-x11docker -c -y --wm=i3wm_blue --size=1364x749 -- \
-  "-v ~/.config/libreoffice:/fakehome/coredumb/.config/libreoffice \
+
+# Ensure it's clean
+ps ax | grep Xephyr | grep 666 | cut -f 1 -d ' ' | xargs kill -9
+
+# Start Xephyr
+Xephyr ':666' -dpi 96 -screen 1364x749 -extension MIT-SHM -extension XTEST & \
+DISPLAY=':666' i3 -c .i3/config_blue &
+
+# Start libreoffice app
+docker run --rm \
+  -e DISPLAY=:666 \
+  -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+  -v ~/.config/libreoffice:/home/coredumb/.config/libreoffice \
   -v ~/documents:/fakehome/coredumb/documents \
   -v ~/.icons:/fakehome/coredumb/.icons \
   -v ~/docker/transit:/fakehome/coredumb/transit \
-  --net none" \
+  --user coredumb \
+  --net none \
   libreoffice:latest lo${APP}
+
+ps ax | grep Xephyr | grep 666 | cut -f 1 -d ' ' | xargs kill -9
