@@ -2,6 +2,9 @@
 {% from 'libs/file.sls' import file_managed with context %}
 {% from 'libs/file.sls' import file_recurse with context %}
 
+# Retrieve the default username from pillars
+{% set username = pillar['username'] %}
+
 # Set default salt path
 {% set home_files = 'salt://userenv/files/home/' %}
 
