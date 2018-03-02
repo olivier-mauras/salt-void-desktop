@@ -51,7 +51,7 @@ wm.pkg:
 {% endif %}
 
 # Install x11docker
-{{ file_managed('/usr/bin/x11docker', 'salt://wm/files/usr/bin/x11docker', mode='755') }}
+{{ file_managed('salt://wm/files/usr/bin/x11docker', '/usr/bin/x11docker', mode='755') }}
 
 # Add default alsa state only if file doesn't exists
 wm.file.var.lib.alsa.asound.state:
