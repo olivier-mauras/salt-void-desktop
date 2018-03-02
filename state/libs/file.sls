@@ -25,3 +25,11 @@ macro.file_recurse.{{ dest }}:
 {% endif %}
     - keep_symlinks: True
 {% endmacro %}
+
+# file.symlink
+{% file_symlink(name, target) %}
+macro.file_symlink.{{ name }}:
+  file.symlink:
+    - name: {{ name }}
+    - target: {{ target }}
+{% endmacro %}

@@ -1,3 +1,7 @@
+# Load macros
+{% from 'libs/file.sls' import file_managed with context %}
+{% from 'libs/file.sls' import file_symlink with context %}
+
 # Install all X/WM packages and tools required
 wm.pkg:
   pkg.installed:
@@ -47,13 +51,7 @@ wm.pkg:
 {% endif %}
 
 # Install x11docker
-wm.x11docker:
-  file.managed:
-    - name: /usr/bin/x11docker
-    - source: salt://wm/files/usr/bin/x11docker
-    - user: root
-    - group: root
-    - mode: 755
+{{ file_managed('/usr/bin/x11docker', 'salt://wm/files/usr/bin/x11docker', mode='755') }}
 
 # Add default alsa state only if file doesn't exists
 wm.file.var.lib.alsa.asound.state:
@@ -67,9 +65,6 @@ wm.file.var.lib.alsa.asound.state:
 # Pulseaudio required services
 # Dbus is already enabled by libvirt but that's for reusability sake. 
 {% for i in ['alsa', 'dbus', 'cgmanager' 'consolekit'] %}
-wm.services.enabled.{{ i }}:
-  file.symlink:
-    - name: /etc/runit/runsvdir/default/{{ i }}
-    - target: /etc/sv/{{ i }}
+{{ file_symlink('/etc/runit/runsvdir/default/' + i, '/etc/sv/' + i) }}
 {% endfor %}
 
