@@ -32,20 +32,13 @@ libvirt.config.networks.default.autostart:
     - name: /etc/libvirt/qemu/networks/autostart/default.xml
 
 {% for network in salt['pillar.get']('libvirt:networks') %}
-libvirt.config.networks.{{ network }}:
-  file.managed:
-    - name: /etc/libvirt/qemu/networks/{{ network }}.xml
-    - source: salt://libvirt/files/qemu/networks/{{ network }}.xml
-    - user: root
-    - group: root
-    - mode: 600
+{{ file_managed('salt://libvirt/files/qemu/networks/' + network,
+                '/etc/libvirt/qemu/networks/' + network,
+                mode='600') }}
 
-libvirt.config.networks.{{ network }}.autostart:
-  file.symlink:
-    - name: /etc/libvirt/qemu/networks/autostart/{{ network }}.xml
-    - target: /etc/libvirt/qemu/networks/{{ network }}.xml
-    - listen_in:
-      - service: libvirt.service.restart
+{{ file_symlink('/etc/libvirt/qemu/networks/autostart/' + network,
+                '/etc/libvirt/qemu/networks/' + network + '.xml',
+                listen_in={'service': 'libvirt.service.restart'}) }}
 {% endfor %}
 
 # Storage
