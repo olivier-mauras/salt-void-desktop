@@ -27,7 +27,7 @@ macro.file_recurse.{{ dest }}:
 {% endmacro %}
 
 # file.symlink
-{% file_symlink(name, target) %}
+{% macro file_symlink(name, target) %}
 macro.file_symlink.{{ name }}:
   file.symlink:
     - name: {{ name }}
