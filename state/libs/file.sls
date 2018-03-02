@@ -63,9 +63,15 @@ macro.file_recurse.{{ dest }}:
 {% endmacro %}
 
 # file.symlink
-{% macro file_symlink(name, target) %}
+{% macro file_symlink(name, target, listen_in={}) %}
 macro.file_symlink.{{ name }}:
   file.symlink:
     - name: {{ name }}
     - target: {{ target }}
+{% if listen_in %}
+    - listen_in:
+{% for type, state in listen_in.iteritems() %}
+      - {{ type }}: {{ state }}
+{% endfor %}
+{% endif %}
 {% endmacro %}
