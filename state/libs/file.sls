@@ -11,7 +11,7 @@ macro.file_managed.{{ dest }}:
 {% endmacro %}
 
 # file.recurse macro
-{% macro file_recurse(source, dest, user=username, group=username, mode='640', dirmode='750', makedirs='True') %}
+{% macro file_recurse(source, dest, user='root', group='root', mode='640', dirmode='750', makedirs='True') %}
 macro.file_recurse.{{ dest }}:
   file.recurse:
     - name: {{ dest }}
