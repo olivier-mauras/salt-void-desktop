@@ -1,3 +1,8 @@
+# Load macros
+{% from 'libs/file.sls' import file_managed with context %}
+{% from 'libs/file.sls' import file_symlink with context %}
+
+
 # Install packages and enable services
 libvirt.pkg:
   pkg.installed:
@@ -7,23 +12,15 @@ libvirt.pkg:
       - virt-manager
 
 {% for service in salt['pillar.get']('libvirt:services') %}
-libvirt.services.enabled.{{ service }}:
-  file.symlink:
-    - name: /etc/runit/runsvdir/default/{{ service }}
-    - target: /etc/sv/{{ service }}
+{{ file_symlink('/etc/runit/runsvdir/default/' + service, '/etc/sv/' + service) }}
 {% endfor %}
 
 # Deploy libvirt configuration files
 # Global config
-libvirt.config.global:
-  file.managed:
-    - name: /etc/libvirt/libvirtd.conf
-    - source: salt://libvirt/files/libvirtd.conf
-    - user: root
-    - group: root
-    - mode: 644
-    - listen_in:
-      - service: libvirt.service.restart
+{{ file_managed('salt://libvirt/files/libvirtd.conf',
+                '/etc/libvirt/libvirtd.conf',
+                mode='644',
+                listen_in={'service': 'libvirt.service.restart'}) }}
 
 # Network
 libvirt.config.networks.default:
