@@ -1,5 +1,12 @@
 # file.managed macro
-{% macro file_managed(source, dest, user='root', group='root', mode='640', makedirs='True') %}
+{% macro file_managed(source,
+                      dest,
+                      user='root',
+                      group='root',
+                      mode='640',
+                      makedirs='True',
+                      unless=[],
+                      onlyif=[]) %}
 macro.file_managed.{{ dest }}:
   file.managed:
     - name: {{ dest }}
@@ -8,10 +15,29 @@ macro.file_managed.{{ dest }}:
     - group: {{ group }}
     - mode: {{ mode }}
     - makedirs: {{ makedirs }}
+{% if unless %}
+    - unless:
+{% for cmd in unless %}
+      - {{ cmd }}
+{% endfor %}
+{% endif %}
+{% if onlyif %}
+    - onlyif:
+{% for cmd in onlyif %}
+      - {{ cmd }}
+{% endfor %}
+{% endif %}
+    - template: jinja
 {% endmacro %}
 
 # file.recurse macro
-{% macro file_recurse(source, dest, user='root', group='root', mode='640', dirmode='750', makedirs='True') %}
+{% macro file_recurse(source,
+                      dest,
+                      user='root',
+                      group='root',
+                      mode='640',
+                      dirmode='750',
+                      makedirs='True') %}
 macro.file_recurse.{{ dest }}:
   file.recurse:
     - name: {{ dest }}
