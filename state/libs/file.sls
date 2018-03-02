@@ -7,7 +7,8 @@
                       makedirs='True',
                       template='none',
                       unless=[],
-                      onlyif=[]) %}
+                      onlyif=[],
+                      listen_in={}) %}
 macro.file_managed.{{ dest }}:
   file.managed:
     - name: {{ dest }}
@@ -30,6 +31,12 @@ macro.file_managed.{{ dest }}:
 {% endif %}
 {% if template != 'none' %}
     - template: {{ template }}
+{% endif %}
+{% if listen_in %}
+    - listen_in:
+{% for type, state in listen_in.iteritems() %}
+      - {{ type }}: {{ state }}
+{% endfor %}
 {% endif %}
 {% endmacro %}
 
