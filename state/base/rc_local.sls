@@ -1,8 +1,5 @@
 # Deploy /etc/rc.local
-base.local.etc.rc.local:
-  file.managed:
-    - name: /etc/rc.local
-    - source: salt://base/files/rc.local
-    - user: root
-    - group: root
-    - mode: 755
+# Load macro
+{% from 'libs/file.sls' import file_managed with context %}
+
+{{ file_managed('salt://base/files/rc.local', '/etc/rc.local', mode='755') }}
