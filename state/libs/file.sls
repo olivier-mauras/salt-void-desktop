@@ -5,6 +5,7 @@
                       group='root',
                       mode='640',
                       makedirs='True',
+                      template='none',
                       unless=[],
                       onlyif=[]) %}
 macro.file_managed.{{ dest }}:
@@ -27,7 +28,9 @@ macro.file_managed.{{ dest }}:
       - {{ cmd }}
 {% endfor %}
 {% endif %}
-    - template: jinja
+{% if template != 'none' %}
+    - template: {{ template }}
+{% endif %}
 {% endmacro %}
 
 # file.recurse macro
