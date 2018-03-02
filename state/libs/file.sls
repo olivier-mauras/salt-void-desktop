@@ -1,8 +1,5 @@
-# Retrieve the default username from pillars
-{% set username = pillar['username'] %}
-
 # file.managed macro
-{% macro file_managed(source, dest, user=username, group=username, mode='640', makedirs='True') %}
+{% macro file_managed(source, dest, user='root', group='root', mode='640', makedirs='True') %}
 macro.file_managed.{{ dest }}:
   file.managed:
     - name: {{ dest }}

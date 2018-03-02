@@ -12,22 +12,22 @@
 {% set homedir = '/home/' + username + '/' %}
 
 # Deploy ~/bin
-{{ file_recurse(home_files + 'bin', homedir + 'bin', mode='750') }}
+{{ file_recurse(home_files + 'bin', homedir + 'bin', mode='750', user=username, group=username) }}
 
 # ZSH
-{{ file_recurse(home_files + 'zsh', homedir + '.zsh') }}
-{{ file_managed(home_files + 'zshrc', homedir + '.zshrc') }}
+{{ file_recurse(home_files + 'zsh', homedir + '.zsh', user=username, group=username) }}
+{{ file_managed(home_files + 'zshrc', homedir + '.zshrc', user=username, group=username) }}
 
 # Vim
-{{ file_managed(home_files + 'vim/vimrc', homedir + '.vimrc') }}
-{{ file_managed(home_files + 'vim/BusyBee.vim', homedir + '.vim/colors/BusyBee.vim') }}
+{{ file_managed(home_files + 'vim/vimrc', homedir + '.vimrc', user=username, group=username) }}
+{{ file_managed(home_files + 'vim/BusyBee.vim', homedir + '.vim/colors/BusyBee.vim', user=username, group=username) }}
 
 # X
-{{ file_managed(home_files + 'Xdefaults', homedir + '.Xdefaults') }}
-{{ file_managed(home_files + 'xinitrc', homedir + '.xinitrc') }}
+{{ file_managed(home_files + 'Xdefaults', homedir + '.Xdefaults', user=username, group=username) }}
+{{ file_managed(home_files + 'xinitrc', homedir + '.xinitrc', user=username, group=username) }}
 
 # i3
-{{ file_recurse(home_files + 'i3', homedir + '.i3', mode='keep') }}
+{{ file_recurse(home_files + 'i3', homedir + '.i3', mode='keep', user=username, group=username) }}
 
 # Sxhkd
-{{ file_managed(home_files + 'sxhkdrc', homedir + '.config/sxhkd/sxhkdrc') }}
+{{ file_managed(home_files + 'sxhkdrc', homedir + '.config/sxhkd/sxhkdrc', user=username, group=username) }}
