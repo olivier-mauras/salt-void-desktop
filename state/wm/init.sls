@@ -54,13 +54,9 @@ wm.pkg:
 {{ file_managed('salt://wm/files/usr/bin/x11docker', '/usr/bin/x11docker', mode='755') }}
 
 # Add default alsa state only if file doesn't exists
-wm.file.var.lib.alsa.asound.state:
-  file.managed:
-    - name: /var/lib/alsa/asound.state
-    - source: salt://wm/files/var/lib/alsa/asound.state
-    - makedirs: True
-    - unless:
-      - ls /var/lib/alsa/asound.state
+{{ file_managed('salt://wm/files/var/lib/alsa/asound.state',
+                '/var/lib/alsa/asound.state',
+                unless=['ls /var/lib/alsa/asound.state']) }}
 
 # Pulseaudio required services
 # Dbus is already enabled by libvirt but that's for reusability sake. 
