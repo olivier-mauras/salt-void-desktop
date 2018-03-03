@@ -10,6 +10,7 @@
                       unless=[],
                       onlyif=[],
                       listen_in={},
+                      watch_in={},
                       id='') %}
 macro.file_managed.{{ dest }}.{{ id }}:
   file.managed:
@@ -46,6 +47,12 @@ macro.file_managed.{{ dest }}.{{ id }}:
       - {{ type }}: {{ state }}
 {% endfor %}
 {% endif %}
+{% if watch_in %}
+    - watch_in:
+{% for type, state in watch_in.iteritems() %}
+      - {{ type }}: {{ state }}
+{% endfor %}
+{% endif %}
 {% endmacro %}
 
 # file.recurse macro
@@ -61,6 +68,7 @@ macro.file_managed.{{ dest }}.{{ id }}:
                       unless=[],
                       onlyif=[],
                       listen_in={},
+                      watch_in={},
                       id='') %}
 macro.file_recurse.{{ dest }}.{{ id }}:
   file.recurse:
@@ -101,12 +109,19 @@ macro.file_recurse.{{ dest }}.{{ id }}:
       - {{ type }}: {{ state }}
 {% endfor %}
 {% endif %}
+{% if watch_in %}
+    - watch_in:
+{% for type, state in watch_in.iteritems() %}
+      - {{ type }}: {{ state }}
+{% endfor %}
+{% endif %}
 {% endmacro %}
 
 # file.symlink
 {% macro file_symlink(name,
                       target,
                       listen_in={},
+                      watch_in={},
                       id='') %}
 macro.file_symlink.{{ name }}.{{ id }}:
   file.symlink:
@@ -116,6 +131,12 @@ macro.file_symlink.{{ name }}.{{ id }}:
 {% if listen_in %}
     - listen_in:
 {% for type, state in listen_in.iteritems() %}
+      - {{ type }}: {{ state }}
+{% endfor %}
+{% endif %}
+{% if watch_in %}
+    - watch_in:
+{% for type, state in watch_in.iteritems() %}
       - {{ type }}: {{ state }}
 {% endfor %}
 {% endif %}
