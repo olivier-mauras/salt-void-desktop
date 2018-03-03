@@ -1,5 +1,5 @@
 # Load macro
-{% from 'libs/file.sls' import file.managed with context %}
+{% from 'libs/file.sls' import file_managed with context %}
 
 {{ file_managed('salt://docker/files/iptables.rules',
                 '/etc/iptables/iptables.rules',
