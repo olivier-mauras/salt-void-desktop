@@ -75,6 +75,7 @@ macro.file_symlink.{{ name }}:
   file.symlink:
     - name: {{ name }}
     - target: {{ target }}
+    - makedirs: True
 {% if listen_in %}
     - listen_in:
 {% for type, state in listen_in.iteritems() %}
