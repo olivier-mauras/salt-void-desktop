@@ -18,6 +18,15 @@ macro.file_managed.{{ dest }}:
     - group: {{ group }}
     - mode: {{ mode }}
     - makedirs: {{ makedirs }}
+{% if template != 'none' %}
+    - template: {{ template }}
+{% endif %}
+{% if context %}
+    - context:
+{% for var, val in context.iteritems() %}
+        {{ var }}: {{ val }}
+{% endfor %}
+{% endif %}
 {% if unless %}
     - unless:
 {% for cmd in unless %}
@@ -28,15 +37,6 @@ macro.file_managed.{{ dest }}:
     - onlyif:
 {% for cmd in onlyif %}
       - {{ cmd }}
-{% endfor %}
-{% endif %}
-{% if template != 'none' %}
-    - template: {{ template }}
-{% endif %}
-{% if context %}
-    - context:
-{% for var, val in context.iteritems() %}
-        {{ var }}: {{ val }}
 {% endfor %}
 {% endif %}
 {% if listen_in %}
@@ -54,7 +54,12 @@ macro.file_managed.{{ dest }}:
                       group='root',
                       mode='640',
                       dirmode='750',
-                      makedirs='True') %}
+                      makedirs='True',
+                      template='none',
+                      context={},
+                      unless=[],
+                      onlyif=[],
+                      listen_in={}) %}
 macro.file_recurse.{{ dest }}:
   file.recurse:
     - name: {{ dest }}
@@ -67,6 +72,33 @@ macro.file_recurse.{{ dest }}:
     - file_mode: {{ mode }}
 {% endif %}
     - keep_symlinks: True
+{% if template != 'none' %}
+    - template: {{ template }}
+{% endif %}
+{% if context %}
+    - context:
+{% for var, val in context.iteritems() %}
+        {{ var }}: {{ val }}
+{% endfor %}
+{% endif %}
+{% if unless %}
+    - unless:
+{% for cmd in unless %}
+      - {{ cmd }}
+{% endfor %}
+{% endif %}
+{% if onlyif %}
+    - onlyif:
+{% for cmd in onlyif %}
+      - {{ cmd }}
+{% endfor %}
+{% endif %}
+{% if listen_in %}
+    - listen_in:
+{% for type, state in listen_in.iteritems() %}
+      - {{ type }}: {{ state }}
+{% endfor %}
+{% endif %}
 {% endmacro %}
 
 # file.symlink
