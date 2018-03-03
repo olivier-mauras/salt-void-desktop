@@ -1,3 +1,7 @@
+# Load macros
+{% from 'libs/file.sls' import file_managed with context %}
+{% from 'libs/file.sls' import file_recurse with context %}
+
 # Prepare docker volume
 include:
   - .lvm
@@ -10,22 +14,15 @@ docker.pkg:
     - name: docker
 
 # Deploy docker global configuration
-docker.config.daemon.json:
-  file.managed:
-    - name: /etc/docker/daemon.json
-    - source: salt://docker/files/daemon.json
-    - user: root
-    - group: root
-    - mode: 600
-    - makedirs: True
-#    - listen_in:
-#      - service: docker.service.restart
+{{ file_managed('salt://docker/files/daemon.json',
+                '/etc/docker/daemon.json',
+                mode='600')
+}}
 
 # Enable service
-docker.services.enable:
-  file.symlink:
-    - name: /etc/runit/runsvdir/default/docker
-    - target: /etc/sv/docker
+{{ file.symlink('/etc/runit/runsvdir/default/docker',
+                '/etc/sv/docker')
+}}
 
 # Network
 {% for network, config in salt['pillar.get']('docker:networks').iteritems() %}
