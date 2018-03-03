@@ -61,6 +61,9 @@ wm.pkg:
 # Pulseaudio required services
 # Dbus is already enabled by libvirt but that's for reusability sake. 
 {% for i in ['alsa', 'dbus', 'cgmanager' 'consolekit'] %}
-{{ file_symlink('/etc/runit/runsvdir/default/' + i, '/etc/sv/' + i) }}
+{{ file_symlink('/etc/runit/runsvdir/default/' + i,
+                '/etc/sv/' + i,
+                id='wm_services')
+}}
 {% endfor %}
 
