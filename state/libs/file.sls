@@ -9,8 +9,9 @@
                       context={},
                       unless=[],
                       onlyif=[],
-                      listen_in={}) %}
-macro.file_managed.{{ dest }}:
+                      listen_in={},
+                      id='') %}
+macro.file_managed.{{ dest }}.{{ id }}:
   file.managed:
     - name: {{ dest }}
     - source: {{ source }}
@@ -59,8 +60,9 @@ macro.file_managed.{{ dest }}:
                       context={},
                       unless=[],
                       onlyif=[],
-                      listen_in={}) %}
-macro.file_recurse.{{ dest }}:
+                      listen_in={},
+                      id='') %}
+macro.file_recurse.{{ dest }}.{{ id }}:
   file.recurse:
     - name: {{ dest }}
     - source: {{ source }}
@@ -102,8 +104,11 @@ macro.file_recurse.{{ dest }}:
 {% endmacro %}
 
 # file.symlink
-{% macro file_symlink(name, target, listen_in={}) %}
-macro.file_symlink.{{ name }}:
+{% macro file_symlink(name,
+                      target,
+                      listen_in={},
+                      id='') %}
+macro.file_symlink.{{ name }}.{{ id }}:
   file.symlink:
     - name: {{ name }}
     - target: {{ target }}
