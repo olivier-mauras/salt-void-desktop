@@ -1,6 +1,6 @@
 # Load macros
 {% from 'libs/file.sls' import file_managed with context %}
-{% from 'libs/file.sls' import file_recurse with context %}
+{% from 'libs/file.sls' import file_symlink with context %}
 
 # Prepare docker volume
 include:
@@ -20,7 +20,7 @@ docker.pkg:
 }}
 
 # Enable service
-{{ file.symlink('/etc/runit/runsvdir/default/docker',
+{{ file_symlink('/etc/runit/runsvdir/default/docker',
                 '/etc/sv/docker')
 }}
 
