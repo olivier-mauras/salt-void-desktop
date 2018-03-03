@@ -6,6 +6,7 @@
                       mode='640',
                       makedirs='True',
                       template='none',
+                      context={},
                       unless=[],
                       onlyif=[],
                       listen_in={}) %}
@@ -31,6 +32,12 @@ macro.file_managed.{{ dest }}:
 {% endif %}
 {% if template != 'none' %}
     - template: {{ template }}
+{% endif %}
+{% if context %}
+    - context:
+{% for var, val in context.iteritems() %}
+        {{ var }}: {{ val }}
+{% endfor %}
 {% endif %}
 {% if listen_in %}
     - listen_in:
