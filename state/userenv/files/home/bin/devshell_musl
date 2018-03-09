@@ -1,6 +1,6 @@
 #!/bin/bash
 . ~/.ssh-agent
-docker run -it --rm -h dev \
+docker run -it --rm -h dev_musl \
   -v /usr/share/terminfo/:/usr/share/terminfo/:ro \
   -v ~/.zshrc:/home/coredumb/.zshrc:ro \
   -v ~/.zsh:/home/coredumb/.zsh:ro \
