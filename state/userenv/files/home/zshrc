@@ -45,6 +45,7 @@ zstyle ':completion:*' special-dirs true
 # Path
 PATH=/usr/local/sbin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:~/dev/Go/bin:~/bin
 MANPATH=${MANPATH}:/usr/share/man
+GOPATH=~/dev/Go
 
 # Declare lang
 [[ -s /etc/locale.conf ]] && . /etc/locale.conf
@@ -53,7 +54,7 @@ MANPATH=${MANPATH}:/usr/share/man
 #TERM=xterm
 
 # Set some usefull variables
-export PAGER=less
+PAGER=less
 
 # Add vim as default editor
 EDITOR="vim"
