@@ -12,7 +12,7 @@ elif [[ "$hostname" == 'rshell' ]]; then
   host_color="%{$fg[red]%}"
 elif [[ "$hostname" == 'ishell' ]]; then
   host_color="%{$fg[blue]%}"
-elif [[ "$hostname" == 'dev' -o "$hostname" == "dev_musl" ]]; then
+elif [[ "$hostname" == 'dev' || "$hostname" == 'dev_musl' ]]; then
   host_color="%{$fg[cyan]%}"
 else
   host_color="%{$fg[yellow]%}"
