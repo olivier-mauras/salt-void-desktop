@@ -8,7 +8,7 @@ x11docker -c -y --wm=i3wm_pink --size=1364x749 -- \
   -v /run/user/1000/pulse:/run/user/1000/pulse \
   -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
   --net untrust \
-  -v ~/docker/resolv/untrust:/etc/resolv.conf:ro" \
+  -v ~/docker/resolv/untrust:/etc/resolv.conf:ro $@" \
   firefox:latest firefox --private-window
 
 rm -rf ~/docker/ffx_pink

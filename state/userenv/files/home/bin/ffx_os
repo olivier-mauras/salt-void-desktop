@@ -1,4 +1,5 @@
 #!/bin/bash
+# Output sound on local network pulse server
 [[ -d ~/docker/ffx_orange ]] && rm -rf ~/docker/ffx_orange
 cp -r ~/docker/firefox_pristine ~/docker/ffx_orange
 cp -r docker/ffx_green/.mozilla/firefox/*/bookmarkbackups/ ~/docker/ffx_orange/.mozilla/firefox/*.*/
@@ -7,8 +8,7 @@ x11docker -c -y --wm=i3wm_orange --size=1364x749 -- \
   "--shm-size 2g \
   -v ~/docker/ffx_orange:/fakehome/coredumb \
   -v ~/docker/transit:/fakehome/coredumb/transit \
-  -v /run/user/1000/pulse:/run/user/1000/pulse \
-  -e PULSE_SERVER=unix:/run/user/1000/pulse/native \
+  -e PULSE_SERVER=tcp:10.60.60.140:4713 \
   --net untrust \
   -v ~/docker/resolv/untrust:/etc/resolv.conf:ro $@" \
   firefox:latest firefox
