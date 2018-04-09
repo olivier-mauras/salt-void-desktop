@@ -18,5 +18,6 @@ docker run -it --rm -h dev \
   --cap-add=SYS_CHROOT \
   --cap-add=SETPCAP \
   --cap-add=SYS_ADMIN \
+  --security-opt="apparmor=unconfined" \
   "$@" \
   dev_shell
