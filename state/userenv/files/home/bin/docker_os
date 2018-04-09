@@ -3,5 +3,6 @@ docker run -it --rm \
   --net trust \
   -v ~/docker/resolv/trust:/etc/resolv.conf:ro \
   --cap-add=ALL \
+  --security-opt="apparmor=unconfined" \
   -v /:/mnt \
   void_base sh -c 'chroot /mnt/ /bin/bash'
