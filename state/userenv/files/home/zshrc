@@ -77,6 +77,7 @@ alias register_ssh='ssh-agent > .ssh-agent && source .ssh-agent && ssh-add && ss
 alias suspend='sudo pm-suspend'
 alias hibernate='sudo pm-hibernate'
 alias xkbch="setxkbmap ch fr -option ctrl:nocaps"
+alias suspend="scrot /tmp/desk.png; convert -scale 10% -scale 1000% /tmp/desk.png /tmp/pixel.png; i3lock -c 000000 -i /tmp/pixel.png; sudo pm-suspend"
 
 # Dev aliases
 alias generate_blog="pushd ~/dev/virtualenvs/pelican/blog/ && source ../bin/activate && make html && cd output_ && rm -rf * && cp -a ../output/* . && git add . && git commit -am 'Blog update' && git push -f origin master && cd .. && git commit -a -m \"$(date)\" && git push origin master; popd"
