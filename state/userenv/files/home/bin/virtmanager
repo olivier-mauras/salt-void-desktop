@@ -1,0 +1,20 @@
+#!/bin/bash
+ps ax | grep "Xephyr :666" | awk '{print $1}' | xargs kill
+
+. ~/.ssh-agent
+Xephyr :666 -dpi 96 -screen 1364x749 -extension MIT-SHM -extension XTEST &
+DISPLAY=:666 i3 -c ~/.i3/config_blue &
+
+docker run -it --rm \
+  -v ~/docker/virtmanager:/home/coredumb:rw \
+  -v ~/.ssh/known_hosts:/home/coredumb/.ssh/known_hosts:ro \
+  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
+  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
+  -e DISPLAY=:666 \
+  -v /tmp/.X11-unix/X666:/tmp/.X11-unix/X666:rw \
+  --net trust \
+  -v ~/docker/resolv/trust:/etc/resolv.conf:ro \
+  --cap-drop=ALL \
+  virtmanager:latest virt-manager --debug
+
+ps ax | grep "Xephyr :666" | awk '{print $1}' | xargs kill
