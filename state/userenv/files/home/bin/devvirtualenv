@@ -1,0 +1,19 @@
+#!/bin/bash
+. ~/.ssh-agent
+docker run -it --rm -h virtualenv \
+  --cpus 4 \
+  -v /usr/share/terminfo/:/usr/share/terminfo/:ro \
+  -v ~/.zshrc:/home/coredumb/.zshrc:ro \
+  -v ~/.zsh:/home/coredumb/.zsh:ro \
+  -v ~/.vim:/home/coredumb/.vim:rw \
+  -v ~/.vimrc:/home/coredumb/.vimrc:ro \
+  -v ~/.gitconfig:/home/coredumb/.gitconfig \
+  -v ~/.ssh/known_hosts:/home/coredumb/.ssh/known_hosts:ro \
+  -v $SSH_AUTH_SOCK:$SSH_AUTH_SOCK \
+  -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
+  -v ~/dev:/home/coredumb/dev \
+  --net trust \
+  -v ~/docker/resolv/trust:/etc/resolv.conf:ro \
+  --cap-drop=ALL \
+  "$@" \
+  virtualenv
